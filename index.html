@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzeria Del Corso Cottone · Palermo</title>
+<meta name="description" content="Pizzeria Del Corso Cottone, C.so Calatafimi 966, Palermo. Pizza a legna dal 1970, gestione familiare, prezzi onesti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosso:#b3222a; --rosso-chiaro:#d43a3f; --crema:#f7f1e6; --crema-scuro:#efe5d2;
+  --nero:#1d1712; --oro:#c9a227; --verde:#2e7d4f;
+  --ombra:0 10px 30px rgba(29,23,18,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--crema);color:var(--nero);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{width:min(1140px,92%);margin:0 auto}
+section{padding:90px 0}
+.etichetta{display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--rosso);margin-bottom:14px}
+.titolo-sezione{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:18px}
+.sottotitolo{color:#5b5248;max-width:640px;font-size:1.05rem}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.35s;padding:18px 0}
+nav.scrolled{background:rgba(29,23,18,.95);backdrop-filter:blur(10px);padding:10px 0;box-shadow:var(--ombra)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
+.logo .fiamma{width:34px;height:34px;background:var(--rosso);border-radius:50%;display:grid;place-items:center;font-size:1rem}
+.nav-links{display:flex;gap:30px;align-items:center;list-style:none}
+.nav-links a{color:#fff;font-size:.92rem;font-weight:500;opacity:.85;transition:.2s}
+.nav-links a:hover{opacity:1;color:var(--oro)}
+.nav-cta{background:var(--rosso);color:#fff!important;padding:10px 20px;border-radius:50px;font-weight:600;opacity:1!important}
+.nav-cta:hover{background:var(--rosso-chiaro)}
+.burger{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer}
+@media(max-width:860px){
+  .burger{display:block}
+  .nav-links{position:fixed;inset:0;background:rgba(29,23,18,.98);flex-direction:column;justify-content:center;gap:32px;transform:translateY(-100%);transition:.45s}
+  .nav-links.aperta{transform:translateY(0)}
+  .nav-links a{font-size:1.3rem}
+}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(rgba(20,14,9,.72),rgba(20,14,9,.82)),radial-gradient(circle at 75% 30%, #7a2a1e, #241009 70%);color:#fff;padding-top:80px}
+.hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;line-height:1.05}
+.hero h1 em{color:var(--oro);font-style:italic}
+.hero p{margin:22px 0 32px;font-size:1.1rem;color:#e8ddcb;max-width:520px}
+.btn{display:inline-block;padding:15px 34px;border-radius:50px;font-weight:600;font-size:.98rem;transition:.25s;cursor:pointer;border:none}
+.btn-rosso{background:var(--rosso);color:#fff}
+.btn-rosso:hover{background:var(--rosso-chiaro);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff;margin-left:12px}
+.btn-ghost:hover{background:#fff;color:var(--nero)}
+.badge-rating{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:8px 16px;border-radius:50px;font-size:.9rem;margin-bottom:24px}
+.badge-rating strong{color:var(--oro)}
+.pizza-volo{position:relative;display:grid;place-items:center}
+#pizza3d{width:min(480px,90vw);height:min(480px,90vw);display:block;filter:drop-shadow(0 50px 60px rgba(0,0,0,.6));cursor:grab}
+#pizza3d:active{cursor:grabbing}
+@media(max-width:860px){.hero .container{grid-template-columns:1fr}.pizza-volo{display:none}.btn-ghost{margin-left:0;margin-top:12px}}
+
+/* ---------- STRISCIA ---------- */
+.striscia{background:var(--rosso);color:#fff;padding:22px 0;overflow:hidden}
+.striscia .container{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:center;font-size:.95rem;font-weight:500}
+.striscia span{display:flex;align-items:center;gap:8px}
+
+/* ---------- CHI SIAMO ---------- */
+.chi-siamo .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.foto-quadro{position:relative}
+.foto-quadro .cornice{position:absolute;inset:-18px 18px 18px -18px;border:3px solid var(--oro);border-radius:22px;z-index:0}
+.foto-quadro .interno{position:relative;z-index:1;border-radius:18px;overflow:hidden;box-shadow:var(--ombra);aspect-ratio:4/3;background:linear-gradient(135deg,#8a3a1d,#3a1c0c);display:grid;place-items:center;color:#f7e8cf;font-size:5rem}
+.stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+.stats div strong{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--rosso)}
+.stats div span{font-size:.85rem;color:#5b5248}
+@media(max-width:860px){.chi-siamo .container{grid-template-columns:1fr}}
+
+/* ---------- MENU ---------- */
+.menu{background:var(--crema-scuro)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:34px 0}
+.tab{padding:11px 24px;border-radius:50px;border:1.5px solid #d8cbb4;background:#fff;cursor:pointer;font-weight:600;font-size:.92rem;transition:.2s;font-family:'Inter',sans-serif}
+.tab.attiva{background:var(--rosso);color:#fff;border-color:var(--rosso)}
+.griglia-menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.carta{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--ombra);transition:.25s;display:flex;flex-direction:column}
+.carta:hover{transform:translateY(-5px)}
+.carta .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
+.carta h3{font-size:1.15rem}
+.carta .prezzo{font-family:'Playfair Display',serif;font-weight:800;color:var(--rosso);white-space:nowrap}
+.carta p{font-size:.9rem;color:#5b5248;flex:1}
+.carta .tag{display:inline-block;margin-top:12px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--oro)}
+
+/* ---------- RECENSIONI ---------- */
+.carousel{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 26px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.recensione{min-width:min(360px,86vw);scroll-snap-align:start;background:#fff;border-radius:18px;padding:30px;box-shadow:var(--ombra);border-top:4px solid var(--oro)}
+.recensione .stelle{color:var(--oro);letter-spacing:3px;margin-bottom:12px}
+.recensione p{font-style:italic;color:#4a4238;font-size:.95rem;margin-bottom:18px}
+.recensione .autore{display:flex;align-items:center;gap:12px}
+.recensione .avatar{width:44px;height:44px;border-radius:50%;background:var(--rosso);color:#fff;display:grid;place-items:center;font-weight:700}
+.recensione .autore small{color:#8a7f70}
+.frecce{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.frecce button{width:46px;height:46px;border-radius:50%;border:1.5px solid #d8cbb4;background:#fff;cursor:pointer;font-size:1.1rem;transition:.2s}
+.frecce button:hover{background:var(--rosso);color:#fff;border-color:var(--rosso)}
+
+/* ---------- ORARI ---------- */
+.orari-cont{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.tabella-orari{background:#fff;border-radius:18px;box-shadow:var(--ombra);overflow:hidden}
+.riga-orari{display:flex;justify-content:space-between;padding:15px 26px;border-bottom:1px solid #f0e8d8;font-size:.95rem}
+.riga-orari:last-child{border-bottom:none}
+.riga-orari.oggi{background:#fdf3e0;font-weight:700;position:relative}
+.riga-orari.oggi::before{content:"OGGI";position:absolute;left:-1px;top:0;bottom:0;width:4px;background:var(--oro)}
+.aperto-ora{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--verde);margin-bottom:20px}
+.punto{width:10px;height:10px;border-radius:50%;background:var(--verde);animation:pulsa 1.6s infinite}
+@keyframes pulsa{0%,100%{box-shadow:0 0 0 0 rgba(46,125,79,.5)}50%{box-shadow:0 0 0 8px rgba(46,125,79,0)}}
+@media(max-width:860px){.orari-cont{grid-template-columns:1fr}}
+
+/* ---------- PRENOTA ---------- */
+.prenota{background:linear-gradient(rgba(29,23,18,.93),rgba(29,23,18,.96)),radial-gradient(circle at 20% 80%,#7a2a1e,#241009 70%);color:#fff}
+.prenota .etichetta{color:var(--oro)}
+.pren-cont{display:grid;grid-template-columns:1fr 1.1fr;gap:60px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.full{grid-column:1/-1}
+.campo label{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#cbbfa8}
+.campo input,.campo select,.campo textarea{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.22);border-radius:10px;padding:13px 16px;color:#fff;font-family:inherit;font-size:.95rem;transition:.2s}
+.campo select option{color:var(--nero)}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--oro);background:rgba(255,255,255,.12)}
+.campo .errore{color:#ff9a9a;font-size:.78rem;display:none}
+.campo.invalido input,.campo.invalido select{border-color:#ff6b6b}
+.campo.invalido .errore{display:block}
+.info-contatto div{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+.info-contatto .icona{width:46px;height:46px;min-width:46px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:1.2rem}
+.info-contatto a{color:var(--oro);font-weight:600}
+.conferma{grid-column:1/-1;background:rgba(46,125,79,.18);border:1.5px solid var(--verde);border-radius:12px;padding:18px;text-align:center;display:none}
+.conferma.mostra{display:block}
+@media(max-width:860px){.pren-cont{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+
+/* ---------- MAPPA / FOOTER ---------- */
+.mappa{background:#e5dcc9;padding:0}
+.mappa iframe{width:100%;height:420px;border:0;display:block;filter:sepia(.25) saturate(.9)}
+footer{background:var(--nero);color:#cbbfa8;padding:50px 0 30px;text-align:center;font-size:.9rem}
+footer .logo{justify-content:center;margin-bottom:14px}
+.reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.7,.3,1)}
+.reveal.visibile{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a class="logo" href="#top"><span class="fiamma">🔥</span> Del Corso <span style="color:var(--oro)">Cottone</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#chi-siamo">Chi Siamo</a></li>
+      <li><a href="#menu">Menù</a></li>
+      <li><a href="#recensioni">Recensioni</a></li>
+      <li><a href="#orari">Orari</a></li>
+      <li><a class="nav-cta" href="#prenota">Prenota un tavolo</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="container">
+    <div>
+      <div class="badge-rating">★ 4,3 su Google · 619 recensioni · <strong>10–20 € a persona</strong></div>
+      <h1>La vera pizza palermitana, <em>a legna</em>, dal cuore di Calatafimi.</h1>
+      <p>Gestione familiare, impasto leggero e ingredienti freschissimi. Una tradizione che dura da generazioni nel cuore di Palermo.</p>
+      <a class="btn btn-rosso" href="#menu">Scopri il Menù</a>
+      <a class="btn btn-ghost" href="tel:+390916606968">📞 091 660 6968</a>
+    </div>
+    <div class="pizza-volo"><canvas id="pizza3d"></canvas></div>
+  </div>
+</header>
+
+<!-- STRISCIA -->
+<div class="striscia">
+  <div class="container">
+    <span>📍 C.so Calatafimi, 966</span>
+    <span>🍕 Pizza a legna</span>
+    <span>👨‍👩‍👧 Gestione familiare</span>
+    <span>💰 Prezzi onesti</span>
+    <span>🕛 Aperto fino a mezzanotte</span>
+  </div>
+</div>
+
+<!-- CHI SIAMO -->
+<section class="chi-siamo" id="chi-siamo">
+  <div class="container">
+    <div class="foto-quadro reveal">
+      <div class="cornice"></div>
+      <div class="interno">🍕</div>
+    </div>
+    <div class="reveal">
+      <span class="etichetta">La nostra storia</span>
+      <h2 class="titolo-sezione">Una famiglia, un forno a legna, Palermo.</h2>
+      <p class="sottotitolo">Chi entra da Cottone una volta, ci torna per tutta la vita. Impasto leggero che lievita lentamente, pomodoro fresco, e quel calore familiare che si sente dal primo morso. Ambiente semplice e sincero: qui conta solo la qualità.</p>
+      <div class="stats">
+        <div><strong>4,3★</strong><span>Valutazione Google</span></div>
+        <div><strong>619</strong><span>Recensioni</span></div>
+        <div><strong>30+</strong><span>Anni di tradizione</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto">
+      <span class="etichetta">Dal forno a legna</span>
+      <h2 class="titolo-sezione">Il Menù</h2>
+      <p class="sottotitolo" style="margin:0 auto">Prezzi onesti, porzioni generose. Tutto come da tradizione.</p>
+    </div>
+    <div class="tabs reveal" style="justify-content:center" id="tabs">
+      <button class="tab attiva" data-cat="pizze">Pizze</button>
+      <button class="tab" data-cat="antipasti">Antipasti & Fritti</button>
+      <button class="tab" data-cat="primi">Primi (a pranzo)</button>
+      <button class="tab" data-cat="dolci">Dolci & Bevande</button>
+    </div>
+    <div class="griglia-menu reveal" id="grigliaMenu"></div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+      <div>
+        <span class="etichetta">Cosa dicono di noi</span>
+        <h2 class="titolo-sezione">Parola ai clienti</h2>
+        <p class="sottotitolo">4,3/5 su Google · 619 recensioni</p>
+      </div>
+      <div class="frecce">
+        <button onclick="scorri(-1)" aria-label="Precedente">←</button>
+        <button onclick="scorri(1)" aria-label="Successiva">→</button>
+      </div>
+    </div>
+    <div class="carousel reveal" id="carousel">
+      <div class="recensione"><div class="stelle">★★★★★</div><p>"Vado da Cottone fin da quando ero bambino e la pizza è sempre eccezionale: impasto leggero e ingredienti freschissimi. Porzioni generose, prezzi onesti."</p><div class="autore"><div class="avatar">M</div><div><strong>Mattia</strong><br><small>Google · 1 mese fa</small></div></div></div>
+      <div class="recensione"><div class="stelle">★★★★★</div><p>"Ambiente semplice e spartano ma ottima pizza e personale pronto, accogliente, gentile e disponibile. Buoni anche gli antipasti con fritti misti, caldi e croccanti."</p><div class="autore"><div class="avatar">A</div><div><strong>Alessandro M.</strong><br><small>Google · 6 mesi fa</small></div></div></div>
+      <div class="recensione"><div class="stelle">★★★★★</div><p>"Gestione familiare e rapporto qualità prezzo difficilmente eguagliabile. A pranzo una scelta immensa tra primi e pizze."</p><div class="autore"><div class="avatar">A</div><div><strong>Andrea G.</strong><br><small>Google · 7 mesi fa</small></div></div></div>
+      <div class="recensione"><div class="stelle">★★★★☆</div><p>"Fritti sempre caldi e leggeri, pizza sottile e digeribile. Perfetto per una serata informale con amici, e il rapporto qualità prezzo è imbattibile."</p><div class="autore"><div class="avatar">S</div><div><strong>Sara</strong><br><small>Google</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORARI -->
+<section id="orari" style="background:var(--crema-scuro)">
+  <div class="container orari-cont">
+    <div class="reveal">
+      <span class="etichetta">Vieni a trovarci</span>
+      <h2 class="titolo-sezione">Orari di apertura</h2>
+      <div class="aperto-ora"><span class="punto"></span><span id="statoApertura"></span></div>
+      <p class="sottotitolo">Permanenza media: da 30 minuti a 1,5 ore. Attese brevi, anche nei giorni di punta.</p>
+      <a class="btn btn-rosso" style="margin-top:26px" href="tel:+390916606968">Chiama per ordinare</a>
+    </div>
+    <div class="tabella-orari reveal" id="tabellaOrari"></div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="container pren-cont">
+    <div class="reveal info-contatto">
+      <span class="etichetta">Contatti</span>
+      <h2 class="titolo-sezione" style="color:#fff">Prenota il tuo tavolo</h2>
+      <div><div class="icona">📍</div><div><strong>Indirizzo</strong><br>C.so Calatafimi, 966<br>90129 Palermo PA</div></div>
+      <div><div class="icona">📞</div><div><strong>Telefono</strong><br><a href="tel:+390916606968">091 660 6968</a></div></div>
+      <div><div class="icona">💶</div><div><strong>Prezzo a persona</strong><br>10 – 20 €</div></div>
+    </div>
+    <form id="formPrenota" class="reveal" novalidate>
+      <div class="campo"><label for="nome">Nome *</label><input id="nome" type="text" placeholder="Il tuo nome"><span class="errore">Inserisci il nome</span></div>
+      <div class="campo"><label for="telefono">Telefono *</label><input id="telefono" type="tel" placeholder="Es. 333 1234567"><span class="errore">Inserisci un numero valido</span></div>
+      <div class="campo"><label for="data">Data *</label><input id="data" type="date"><span class="errore">Scegli una data (non passata)</span></div>
+      <div class="campo"><label for="ora">Ora *</label><select id="ora"></select></div>
+      <div class="campo"><label for="persone">Persone *</label><select id="persone"><option value="">Seleziona</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option value="7+">7 o più</option></select><span class="errore">Quante persone?</span></div>
+      <div class="campo"><label for="note">Note</label><input id="note" type="text" placeholder="Allergie, seggiolone…"></div>
+      <div class="campo full"><button class="btn btn-rosso" type="submit" style="width:100%">Conferma prenotazione</button></div>
+      <div class="conferma" id="conferma">✅ Grazie! Prenotazione registrata. Ti richiameremo al numero indicato per conferma.</div>
+    </form>
+  </div>
+</section>
+
+<!-- MAPPA -->
+<div class="mappa">
+  <iframe title="Mappa Pizzeria Del Corso Cottone" loading="lazy"
+    src="https://www.google.com/maps?q=Corso+Calatafimi+966+Palermo&output=embed"></iframe>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="logo"><span class="fiamma">🔥</span> Del Corso Cottone</div>
+    <p>C.so Calatafimi, 966 · 90129 Palermo PA · <a href="tel:+390916606968" style="color:var(--oro)">091 660 6968</a></p>
+    <p style="margin-top:10px;opacity:.6">© 2026 Pizzeria Del Corso Cottone · Pizza a legna · Prezzo medio 10–20 €</p>
+  </div>
+</footer>
+
+<script>
+/* ---- MENU DATI ---- */
+const MENU = {
+  pizze: [
+    {nome:"Margherita", prezzo:"5,00 €", desc:"Pomodoro fresco, fior di latte, basilico, olio EVO siciliano.", tag:"Classica"},
+    {nome:"Marinara", prezzo:"4,50 €", desc:"Pomodoro, aglio, origano e olio EVO. Semplice e vera.", tag:"Classica"},
+    {nome:"Napoli", prezzo:"6,00 €", desc:"Pomodoro, mozzarella, acciughe di Sciacca, capperi e origano.", tag:"Classica"},
+    {nome:"Diavola", prezzo:"7,00 €", desc:"Mozzarella, salame piccante e un tocco di peperoncino.", tag:"Piccante"},
+    {nome:"Quattro Formaggi", prezzo:"8,00 €", desc:"Mozzarella, gorgonzola, provola affumicata e parmigiano.", tag:"Sfiziosa"},
+    {nome:"Capricciosa", prezzo:"8,00 €", desc:"Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi e olive.", tag:"Sfiziosa"},
+    {nome:"Norma", prezzo:"7,50 €", desc:"Melanzane fritte, pomodoro, ricotta salata e basilico. Omaggio alla Sicilia.", tag:"Siciliana"},
+    {nome:"Pizza del Corso", prezzo:"9,00 €", desc:"La specialità della casa: ingredienti a sorpresa del giorno, chiedi al pizzaiolo!", tag:"Specialità"},
+  ],
+  antipasti: [
+    {nome:"Fritto Misto della Casa", prezzo:"8,00 €", desc:"Arancinetti, panelle, crocchette e verdure in pasto. Serviti caldi e croccanti.", tag:"Da condividere"},
+    {nome:"Panelle e Crocchè", prezzo:"4,00 €", desc:"Il classico palermitano: panelle di ceci e crocchè di patate.", tag:"Palermitano"},
+    {nome:"Bruschetta Siciliana", prezzo:"5,00 €", desc:"Pane tostato, pomodoro fresco, basilico, origano e olio EVO.", tag:"Fresco"},
+    {nome:"Tagliere Misto", prezzo:"12,00 €", desc:"Salumi e formaggi siciliani con miele e marmellata di fichi d'India.", tag:"Da condividere"},
+  ],
+  primi: [
+    {nome:"Pasta alla Norma", prezzo:"8,00 €", desc:"Maccheroncini con melanzane, pomodoro e ricotta salata.", tag:"Pranzo"},
+    {nome:"Spaghetti con le Sarde", prezzo:"9,00 €", desc:"Sarde fresche, finocchietto, uvetta e pinoli. I sapori di Palermo.", tag:"Palermitano"},
+    {nome:"Pasta al Forno", prezzo:"8,00 €", desc:"Anelletti al forno con ragù, piselli e melanzane.", tag:"Pranzo"},
+    {nome:"Pennette alla Salsiccia", prezzo:"8,50 €", desc:"Salsiccia siciliana, pomodoro e provola filante.", tag:"Pranzo"},
+  ],
+  dolci: [
+    {nome:"Cannolo Siciliano", prezzo:"4,00 €", desc:"Ricotta di pecora, gocce di cioccolato e scorza d'arancia. Riempito al momento.", tag:"Dolce"},
+    {nome:"Cassatina", prezzo:"4,50 €", desc:"Pan di Spagna, ricotta e frutta candita.", tag:"Dolce"},
+    {nome:"Birra Artigianale Siciliana", prezzo:"5,00 €", desc:"Bionda o ambrata, 33 cl.", tag:"Bere"},
+    {nome:"Vino della Casa (¼ L)", prezzo:"3,00 €", desc:"Rosso o bianco dei Colli di Palermo.", tag:"Bere"},
+    {nome:"Coca-Cola / Aranciata", prezzo:"2,50 €", desc:"Lattina 33 cl, servita ghiacciata.", tag:"Bere"},
+  ],
+};
+
+const griglia = document.getElementById('grigliaMenu');
+function renderMenu(cat){
+  griglia.innerHTML = MENU[cat].map(p => `
+    <div class="carta">
+      <div class="top"><h3>${p.nome}</h3><span class="prezzo">${p.prezzo}</span></div>
+      <p>${p.desc}</p>
+      <span class="tag">${p.tag}</span>
+    </div>`).join('');
+}
+renderMenu('pizze');
+document.getElementById('tabs').addEventListener('click', e=>{
+  const t = e.target.closest('.tab'); if(!t) return;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('attiva'));
+  t.classList.add('attiva');
+  renderMenu(t.dataset.cat);
+});
+
+/* ---- NAV ---- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=> nav.classList.toggle('scrolled', scrollY > 40));
+const navLinks = document.getElementById('navLinks');
+document.getElementById('burger').onclick = ()=> navLinks.classList.toggle('aperta');
+navLinks.querySelectorAll('a').forEach(a=> a.onclick = ()=> navLinks.classList.remove('aperta'));
+
+/* ---- CAROSELLO ---- */
+const car = document.getElementById('carousel');
+function scorri(dir){ car.scrollBy({left: dir * 380, behavior:'smooth'}); }
+
+/* ---- ORARI ---- */
+const ORARI = [ // 0 = dom
+  {g:"Domenica",  p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+  {g:"Lunedì",    p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+  {g:"Martedì",   p:"Chiuso", a:null, b:null},
+  {g:"Mercoledì", p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+  {g:"Giovedì",   p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+  {g:"Venerdì",   p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+  {g:"Sabato",    p:"12:00 – 15:00 / 18:30 – 00:00", a:12, b:24},
+];
+const oggi = new Date().getDay(); // 0 dom ... 6 sab
+const tabOrari = document.getElementById('tabellaOrari');
+tabOrari.innerHTML = [1,2,3,4,5,6,0].map(i=>`
+  <div class="riga-orari ${i===oggi ? 'oggi' : ''}">
+    <span>${ORARI[i].g}${i===oggi ? ' · oggi' : ''}</span><span>${ORARI[i].p}</span>
+  </div>`).join('');
+
+const stato = document.getElementById('statoApertura');
+const adesso = new Date();
+const odierno = ORARI[oggi];
+if (odierno.a !== null) {
+  const h = adesso.getHours();
+  const aperto = (h >= 12 && h < 15) || (h >= 18 && h < 24);
+  stato.textContent = aperto ? "Aperto ora · Chiude a mezzanotte" : "Chiuso ora · Apre alle 12:00";
+} else {
+  stato.textContent = "Chiuso oggi · Riapre mercoledì alle 12:00";
+}
+
+/* ---- FORM PRENOTAZIONE ---- */
+const selOra = document.getElementById('ora');
+let opts = '<option value="">Seleziona</option>';
+for(let h=12; h<15; h++) for(let m of [0,30]) opts += `<option>${String(h).padStart(2,'0')}:${m===0?'00':'30'}</option>`;
+for(let h=18; h<24; h++) for(let m of [0,30]) opts += `<option>${String(h).padStart(2,'0')}:${m===0?'00':'30'}</option>`;
+selOra.innerHTML = opts;
+
+document.getElementById('data').min = new Date().toISOString().split('T')[0];
+
+const form = document.getElementById('formPrenota');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  let ok = true;
+  const check = (id, valid)=>{
+    const c = document.getElementById(id).closest('.campo');
+    c.classList.toggle('invalido', !valid);
+    if(!valid) ok = false;
+  };
+  check('nome', document.getElementById('nome').value.trim().length >= 2);
+  check('telefono', /^[0-9+ ]{8,15}$/.test(document.getElementById('telefono').value.trim()));
+  const d = document.getElementById('data').value;
+  check('data', d && new Date(d) >= new Date(new Date().toDateString()));
+  check('ora', selOra.value !== '');
+  check('persone', document.getElementById('persone').value !== '');
+  document.getElementById('conferma').classList.toggle('mostra', ok);
+  if(ok) form.reset();
+});
+
+/* ---- ANIMAZIONI SCROLL ---- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visibile'); io.unobserve(en.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+/* ============ utility rumore ============ */
+const rnd = (a,b)=>a+Math.random()*(b-a);
+function fbm(x,z){ // rumore finto a bassa frequenza
+  return Math.sin(x*3.1+Math.sin(z*2.7))*.5 + Math.sin(z*5.3+Math.sin(x*1.9))*.3 + Math.sin(x*11+z*9)*.2;
+}
+
+/* ============ texture procedurali ============ */
+function texCanvas(size, fn, srgb=true){
+  const c=document.createElement('canvas'); c.width=c.height=size;
+  const ctx=c.getContext('2d'); fn(ctx,size);
+  const t=new THREE.CanvasTexture(c);
+  if(srgb) t.colorSpace=THREE.SRGBColorSpace;
+  t.anisotropy=8; t.wrapS=t.wrapT=THREE.RepeatWrapping;
+  return {tex:t, canvas:c};
+}
+function chiazze(ctx,s,n,fn){ for(let i=0;i<n;i++) fn(Math.random()*s,Math.random()*s, i); }
+
+/* --- legno del tagliere --- */
+const wood = texCanvas(1024,(ctx,s)=>{
+  ctx.fillStyle='#9c6a3c'; ctx.fillRect(0,0,s,s);
+  for(let r=0;r<90;r++){ // anelli
+    ctx.strokeStyle=`rgba(${60+Math.random()*40|0},${35+Math.random()*25|0},15,${rnd(.05,.2)})`;
+    ctx.lineWidth=rnd(1,4);
+    ctx.beginPath();
+    ctx.ellipse(s/2+rnd(-40,40),s/2+rnd(-40,40), rnd(40,s*.62), rnd(40,s*.62)*rnd(.8,1.1), rnd(-.2,.2), 0, 7);
+    ctx.stroke();
+  }
+  chiazze(ctx,s,500,(x,y)=>{ // venature
+    ctx.strokeStyle=`rgba(70,42,18,${rnd(.03,.12)})`; ctx.lineWidth=rnd(.5,2);
+    ctx.beginPath(); ctx.moveTo(x,y);
+    ctx.bezierCurveTo(x+rnd(-90,90),y+rnd(-15,15),x+rnd(-180,180),y+rnd(-25,25),x+rnd(-280,280),y+rnd(-35,35));
+    ctx.stroke();
+  });
+  chiazze(ctx,s,120,(x,y)=>{ ctx.fillStyle=`rgba(40,22,8,${rnd(.08,.25)})`; ctx.beginPath(); ctx.arc(x,y,rnd(1,4),0,7); ctx.fill(); }); // nodi
+});
+wood.tex.repeat.set(1.6,1.6);
+
+/* --- crosta con bolle scottate, farina e sesamo --- */
+const crust = texCanvas(1024,(ctx,s)=>{
+  const g=ctx.createLinearGradient(0,0,0,s);
+  g.addColorStop(0,'#e0a75c'); g.addColorStop(.5,'#cd8b3e'); g.addColorStop(1,'#a8672a');
+  ctx.fillStyle=g; ctx.fillRect(0,0,s,s);
+  chiazze(ctx,s,1400,(x,y)=>{ // grana del pane
+    ctx.fillStyle=Math.random()<.5?`rgba(240,200,130,${rnd(.04,.12)})`:`rgba(120,70,25,${rnd(.04,.12)})`;
+    ctx.beginPath(); ctx.arc(x,y,rnd(.6,2.4),0,7); ctx.fill();
+  });
+  chiazze(ctx,s,90,(x,y)=>{ // bolle scottate
+    const r=rnd(6,26);
+    const rg=ctx.createRadialGradient(x,y,r*.15,x,y,r);
+    rg.addColorStop(0,'rgba(60,28,8,.85)'); rg.addColorStop(.55,'rgba(110,58,18,.5)'); rg.addColorStop(1,'rgba(230,180,110,0)');
+    ctx.fillStyle=rg; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
+    ctx.fillStyle='rgba(255,230,180,.35)'; // alone chiaro sulla bolla
+    ctx.beginPath(); ctx.arc(x-r*.4,y-r*.45,r*.22,0,7); ctx.fill();
+  });
+  chiazze(ctx,s,260,(x,y)=>{ // semi di sesamo
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rnd(0,6.3));
+    ctx.fillStyle='#efe3c0'; ctx.strokeStyle='rgba(120,90,40,.6)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.ellipse(0,0,rnd(3,4.4),rnd(1.8,2.4),0,0,7); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  });
+  chiazze(ctx,s,110,(x,y)=>{ // spolverata di farina
+    ctx.fillStyle=`rgba(255,248,235,${rnd(.04,.1)})`;
+    ctx.beginPath(); ctx.ellipse(x,y,rnd(8,34),rnd(6,20),rnd(0,3),0,7); ctx.fill();
+  });
+});
+
+/* --- salsa --- */
+const sauce = texCanvas(512,(ctx,s)=>{
+  ctx.fillStyle='#a3241a'; ctx.fillRect(0,0,s,s);
+  chiazze(ctx,s,420,(x,y)=>{
+    ctx.fillStyle=Math.random()<.5?`rgba(200,70,45,${rnd(.1,.3)})`:`rgba(110,20,12,${rnd(.1,.3)})`;
+    ctx.beginPath(); ctx.arc(x,y,rnd(2,12),0,7); ctx.fill();
+  });
+  chiazze(ctx,s,60,(x,y)=>{ ctx.fillStyle=`rgba(240,160,120,${rnd(.05,.12)})`; ctx.beginPath(); ctx.arc(x,y,rnd(1,3),0,7); ctx.fill(); }); // olio
+});
+
+/* --- mozzarella fusa --- */
+const cheese = texCanvas(1024,(ctx,s)=>{
+  ctx.fillStyle='#e3ab38'; ctx.fillRect(0,0,s,s);
+  chiazze(ctx,s,320,(x,y)=>{ // chiazze filanti
+    ctx.fillStyle=Math.random()<.55?'#f4d67c':'#f8e6ac';
+    ctx.globalAlpha=rnd(.35,.7);
+    ctx.beginPath(); ctx.ellipse(x,y,rnd(24,90),rnd(18,64),rnd(0,3.2),0,7); ctx.fill();
+  });
+  chiazze(ctx,s,200,(x,y)=>{ // doratura
+    ctx.fillStyle='#b5771c'; ctx.globalAlpha=rnd(.15,.45);
+    ctx.beginPath(); ctx.arc(x,y,rnd(3,13),0,7); ctx.fill();
+  });
+  chiazze(ctx,s,110,(x,y)=>{ // bolle scoppiate
+    ctx.globalAlpha=rnd(.3,.6); ctx.strokeStyle='#8a5510'; ctx.lineWidth=rnd(1,2.4);
+    ctx.beginPath(); ctx.arc(x,y,rnd(3,9),0,7); ctx.stroke();
+    ctx.fillStyle='#c98e2e'; ctx.globalAlpha=.5; ctx.beginPath(); ctx.arc(x,y,rnd(1,3),0,7); ctx.fill();
+  });
+  ctx.globalAlpha=1;
+});
+const cheeseRough = texCanvas(512,(ctx,s)=>{ // mappa ruvidità: zone oleose lucide
+  ctx.fillStyle='#9a9a9a'; ctx.fillRect(0,0,s,s);
+  chiazze(ctx,s,150,(x,y)=>{ // chiazze d'olio = più lucide (scure)
+    ctx.fillStyle='rgba(40,40,40,.8)'; ctx.beginPath(); ctx.ellipse(x,y,rnd(10,50),rnd(8,30),rnd(0,3),0,7); ctx.fill();
+  });
+}, false);
+
+/* --- salamino "cup & char" --- */
+function salaminoTex(){
+  const {tex, canvas:c} = texCanvas(256,(ctx,s)=>{
+    const g=ctx.createRadialGradient(s/2,s/2,8,s/2,s/2,s/2);
+    g.addColorStop(0,'#b83424'); g.addColorStop(.55,'#9c2415'); g.addColorStop(.82,'#6e130a'); g.addColorStop(1,'#38060a');
+    ctx.fillStyle=g; ctx.fillRect(0,0,s,s);
+    chiazze(ctx,s,180,(x,y)=>{ // grasso
+      ctx.fillStyle=Math.random()<.6?`rgba(255,190,160,${rnd(.15,.45)})`:`rgba(40,8,4,${rnd(.2,.5)})`;
+      ctx.beginPath(); ctx.arc(x,y,rnd(.8,3.2),0,7); ctx.fill();
+    });
+    chiazze(ctx,s,26,(x,y)=>{ // carbonella
+      ctx.fillStyle=`rgba(15,3,2,${rnd(.4,.8)})`; ctx.beginPath(); ctx.arc(x,y,rnd(3,9),0,7); ctx.fill();
+    });
+  });
+  // bordo bruciacchiato su tutto il bordo (la tazza diventa scura ai bordi)
+  const ctx=c.getContext('2d');
+  const ring=ctx.createRadialGradient(128,128,80,128,128,128);
+  ring.addColorStop(0,'rgba(0,0,0,0)'); ring.addColorStop(.75,'rgba(20,4,3,.25)'); ring.addColorStop(1,'rgba(10,2,2,.85)');
+  ctx.fillStyle=ring; ctx.fillRect(0,0,256,256);
+  tex.needsUpdate=true;
+  return tex;
+}
+const pepTex = salaminoTex();
+
+/* --- basilico --- */
+const basil = texCanvas(128,(ctx,s)=>{
+  ctx.fillStyle='#2c5e28'; ctx.fillRect(0,0,s,s);
+  const g=ctx.createRadialGradient(s/2,s/2,6,s/2,s/2,s/2);
+  g.addColorStop(0,'#4c8f42'); g.addColorStop(1,'#1c3d19');
+  ctx.fillStyle=g; ctx.fillRect(0,0,s,s);
+  chiazze(ctx,s,140,(x,y)=>{ ctx.fillStyle=`rgba(120,190,100,${rnd(.05,.15)})`; ctx.beginPath(); ctx.arc(x,y,rnd(1,5),0,7); ctx.fill(); });
+  ctx.strokeStyle='rgba(230,255,220,.25)'; ctx.lineWidth=2; // nervatura centrale
+  ctx.beginPath(); ctx.moveTo(s/2,6); ctx.lineTo(s/2,s-6); ctx.stroke();
+});
+
+/* --- vapore --- */
+const steamTex = texCanvas(64,(ctx,s)=>{
+  const g=ctx.createRadialGradient(s/2,s/2,2,s/2,s/2,s/2);
+  g.addColorStop(0,'rgba(255,255,255,.7)'); g.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=g; ctx.fillRect(0,0,s,s);
+});
+
+/* ============ scena ============ */
+const canvas=document.getElementById('pizza3d');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.15;
+
+const scene=new THREE.Scene();
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+
+const camera=new THREE.PerspectiveCamera(36,1,.1,100);
+camera.position.set(0,3.6,4.9);
+camera.lookAt(0,.05,0);
+
+/* luci */
+const key=new THREE.DirectionalLight(0xfff1da,3.2);
+key.position.set(4.5,6.5,3); key.castShadow=true;
+key.shadow.mapSize.set(2048,2048);
+key.shadow.radius=6; key.shadow.bias=-.0004;
+Object.assign(key.shadow.camera,{left:-4,right:4,top:4,bottom:-4});
+scene.add(key);
+const fill=new THREE.PointLight(0xff7847,14,14); fill.position.set(-4,2.5,-2.5); scene.add(fill);
+const rim=new THREE.DirectionalLight(0xcfe4ff,1.1); rim.position.set(-2,4,-5); scene.add(rim);
+scene.add(new THREE.AmbientLight(0xffe6c4,.35));
+
+const pizza=new THREE.Group(); scene.add(pizza);
+
+/* --- tagliere --- */
+const board=new THREE.Mesh(
+  new THREE.CylinderGeometry(2.25,2.25,.12,72),
+  new THREE.MeshStandardMaterial({map:wood.tex,roughness:.7,bumpMap:wood.tex,bumpScale:.25}));
+board.position.y=-.32; board.castShadow=board.receiveShadow=true; pizza.add(board);
+const boardRim=new THREE.Mesh(new THREE.TorusGeometry(2.25,.05,14,72),
+  new THREE.MeshStandardMaterial({color:0x6e421f,roughness:.8}));
+boardRim.rotation.x=Math.PI/2; boardRim.position.y=-.27; pizza.add(boardRim);
+
+/* --- base pasta --- */
+function ondula(geo,amp){
+  const p=geo.attributes.position;
+  for(let i=0;i<p.count;i++){
+    const x=p.getX(i),z=p.getZ(i);
+    p.setY(i,p.getY(i)+fbm(x*1.6,z*1.6)*amp+fbm(x*5,z*5)*amp*.35);
+  }
+  geo.computeVertexNormals(); return geo;
+}
+const crustMat=new THREE.MeshStandardMaterial({
+  map:crust.tex,roughness:.9,bumpMap:crust.tex,bumpScale:.9,envMapIntensity:.35});
+const base=new THREE.Mesh(ondula(new THREE.CylinderGeometry(1.68,1.74,.22,128,6),.015),crustMat);
+base.position.y=-.09; base.castShadow=base.receiveShadow=true; pizza.add(base);
+
+/* --- salsa visibile tra la mozzarella --- */
+const sauceMesh=new THREE.Mesh(ondula(new THREE.CylinderGeometry(1.63,1.63,.06,128,3),.01),
+  new THREE.MeshStandardMaterial({map:sauce.tex,roughness:.45,envMapIntensity:.6}));
+sauceMesh.position.y=.07; sauceMesh.receiveShadow=true; pizza.add(sauceMesh);
+
+/* --- mozzarella a chiazze (lascia vedere la salsa) --- */
+const cheeseMat=new THREE.MeshPhysicalMaterial({
+  map:cheese.tex,roughnessMap:cheeseRough.tex,roughness:.55,
+  bumpMap:cheese.tex,bumpScale:.3,envMapIntensity:.9,
+  sheen:.6,sheenColor:new THREE.Color(0xffe9b0),sheenRoughness:.5});
+const posPeperoni=[[.1,.3],[.85,-.35],[-.8,-.3],[.5,1.0],[-.55,1.0],[1.12,.3],[-1.12,.5],[.2,-1.1],[-.3,-1.4],[.95,-1.0]];
+function fuoriDaPeperoni(x,z){
+  return !posPeperoni.some(([px,pz])=> (x-px)**2+(z-pz)**2 < .34**2);
+}
+let piazzate=0;
+while(piazzate<30){
+  const a=rnd(0,6.283), r=Math.sqrt(Math.random())*1.42;
+  const x=Math.cos(a)*r, z=Math.sin(a)*r;
+  if(!fuoriDaPeperoni(x,z)) continue;
+  const rr=rnd(.17,.34);
+  const blob=new THREE.Mesh(new THREE.SphereGeometry(rr,22,16),cheeseMat);
+  blob.scale.set(1,rnd(.22,.32),1);
+  blob.position.set(x,.105,z);
+  blob.rotation.y=rnd(0,6.3);
+  blob.castShadow=blob.receiveShadow=true;
+  pizza.add(blob); piazzate++;
+}
+/* filamenti di mozzarella che colano sul bordo */
+for(let i=0;i<7;i++){
+  const a=rnd(0,6.283);
+  const drip=new THREE.Mesh(new THREE.CapsuleGeometry(rnd(.03,.05),rnd(.1,.3),6,10),cheeseMat);
+  drip.position.set(Math.cos(a)*1.62,.0,Math.sin(a)*1.62);
+  drip.rotation.z=Math.cos(a)*.35; drip.rotation.x=-Math.sin(a)*.35;
+  pizza.add(drip);
+}
+
+/* --- cornicione gonfio e irregolare --- */
+const crustGeo=new THREE.TorusGeometry(1.62,.23,30,128);
+{
+  const p=crustGeo.attributes.position;
+  for(let i=0;i<p.count;i++){
+    const a=Math.atan2(p.getZ(i),p.getX(i));
+    const r=1+fbm(Math.cos(a)*2,Math.sin(a)*2)*.05+fbm(Math.cos(a)*7,Math.sin(a)*7)*.025;
+    p.setX(i,p.getX(i)*r); p.setZ(i,p.getZ(i)*r);
+    p.setY(i,p.getY(i)+fbm(Math.cos(a)*4,Math.sin(a)*4)*.035);
+  }
+  crustGeo.computeVertexNormals();
+}
+const cornicione=new THREE.Mesh(crustGeo,crustMat);
+cornicione.rotation.x=-Math.PI/2; cornicione.position.y=.13;
+cornicione.castShadow=cornicione.receiveShadow=true; pizza.add(cornicione);
+
+/* --- salamini cup & char --- */
+function salamino(r){
+  const g=new THREE.Group();
+  const geo=new THREE.CylinderGeometry(r*.92,r,.05,30,3);
+  const p=geo.attributes.position; // incava il centro = "cup"
+  for(let i=0;i<p.count;i++){
+    const x=p.getX(i),z=p.getZ(i);
+    const d=Math.sqrt(x*x+z*z)/r;
+    if(p.getY(i)>0) p.setY(i,p.getY(i)-Math.max(0,(1-d))*.028);
+  }
+  geo.computeVertexNormals();
+  const mat=new THREE.MeshPhysicalMaterial({
+    map:pepTex,roughness:.42,clearcoat:.55,clearcoatRoughness:.4,
+    bumpMap:pepTex,bumpScale:.2,envMapIntensity:1});
+  const m=new THREE.Mesh(geo,mat); m.castShadow=true; g.add(m);
+  return g;
+}
+posPeperoni.forEach(([x,z],i)=>{
+  const p=salamino(rnd(.2,.24));
+  p.position.set(x,.155,z);
+  p.rotation.set(rnd(-.14,.14),rnd(0,6.3),rnd(-.14,.14));
+  pizza.add(p);
+});
+
+/* --- basilico ricurvo --- */
+function foglia(){
+  const geo=new THREE.SphereGeometry(.17,20,14);
+  const p=geo.attributes.position; // arcuatura a foglia
+  for(let i=0;i<p.count;i++){
+    const x=p.getX(i);
+    p.setZ(i,p.getZ(i)*(1-Math.abs(x)*2.2)); // restringe alle punte
+    p.setY(i,p.getY(i)+Math.abs(x)*.35);      // arco
+  }
+  geo.computeVertexNormals();
+  const f=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({
+    map:basil.tex,roughness:.45,sheen:1,sheenColor:new THREE.Color(0xbfe8a0),
+    sheenRoughness:.35,envMapIntensity:.7,side:THREE.DoubleSide}));
+  f.scale.set(1,.12,.8); f.castShadow=true; return f;
+}
+[[.55,.6],[-.6,-.9],[-.1,.15],[1.0,-.15],[-1.0,0],[.35,-.65],[0,1.15]].forEach(([x,z])=>{
+  const f=foglia(); f.position.set(x,.2,z); f.rotation.set(rnd(-.3,.3),rnd(0,6.3),rnd(-.3,.3)); pizza.add(f);
+});
+
+/* --- origano sparso --- */
+const oreMat=new THREE.MeshStandardMaterial({color:0x3d5423,roughness:1});
+for(let i=0;i<40;i++){
+  const a=rnd(0,6.283), r=Math.sqrt(Math.random())*1.45;
+  const o=new THREE.Mesh(new THREE.PlaneGeometry(rnd(.02,.045),rnd(.012,.03)),oreMat);
+  o.position.set(Math.cos(a)*r,.185+rnd(0,.01),Math.sin(a)*r);
+  o.rotation.set(-Math.PI/2+rnd(-.4,.4),rnd(0,6.3),rnd(0,6.3));
+  pizza.add(o);
+}
+
+/* --- vapore che sale --- */
+const steam=[];
+const steamGroup=new THREE.Group(); scene.add(steamGroup);
+for(let i=0;i<26;i++){
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({
+    map:steamTex.tex,transparent:true,opacity:0,depthWrite:false}));
+  sp.userData={a:rnd(0,6.283),r:rnd(.2,1.2),t:rnd(0,1),speed:rnd(.12,.28),size:rnd(.25,.6)};
+  steamGroup.add(sp); steam.push(sp);
+}
+
+/* ============ interazione ============ */
+let dragging=false,px=0,py=0,velY=.005,targetTiltX=.1;
+canvas.addEventListener('pointerdown',e=>{dragging=true;px=e.clientX;py=e.clientY;canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{
+  if(dragging){
+    pizza.rotation.y+=(e.clientX-px)*.008;
+    targetTiltX=Math.max(-.55,Math.min(.6,targetTiltX+(e.clientY-py)*.004));
+    px=e.clientX;py=e.clientY;
+  }else{
+    const r=canvas.getBoundingClientRect();
+    const mx=(e.clientX-r.left)/r.width-.5,my=(e.clientY-r.top)/r.height-.5;
+    pizza.position.x=mx*.22; pizza.position.z=my*.18;
+  }
+});
+addEventListener('pointerup',()=>dragging=false);
+
+function resize(){
+  const w=canvas.clientWidth,h=canvas.clientHeight;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(canvas); resize();
+
+const clock=new THREE.Clock();
+(function anima(){
+  requestAnimationFrame(anima);
+  const t=clock.getElapsedTime(), dt=clock.getDelta()||.016;
+  if(!dragging) pizza.rotation.y+=velY;
+  pizza.rotation.x+= (targetTiltX-pizza.rotation.x)*.06 + Math.sin(t*.8)*.0004;
+  pizza.rotation.z=Math.sin(t*.5)*.03;
+  pizza.position.y=Math.sin(t*1.1)*.07;
+  steam.forEach(sp=>{
+    const u=sp.userData; u.t+=u.speed*.016;
+    if(u.t>1){u.t=0;u.a=rnd(0,6.283);u.r=rnd(.2,1.2);}
+    sp.position.set(Math.cos(u.a+u.t*1.5)*u.r, .35+u.t*1.5, Math.sin(u.a+u.t*1.5)*u.r);
+    sp.material.opacity=Math.sin(u.t*Math.PI)*.16;
+    sp.scale.setScalar(u.size*(0.7+u.t));
+  });
+  renderer.render(scene,camera);
+})();
+</script>
+</body>
+</html>
